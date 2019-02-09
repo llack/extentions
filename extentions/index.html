@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/jscolor.js"></script>
+<script src="js/nawoo.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-select.min.css">
+<link rel="stylesheet" href="css/material-switch.css">
+</head>
+<style>
+body {
+	width: 300px;
+	height : 450px;
+	padding : 1em;
+}
+.color {
+	cursor:pointer;
+	font-size: 20px;
+	height : 30px;
+	color : grey;
+	width : 100%;
+}
+.header {
+	border : none;
+	text-align:center;
+	background-color : #d9534f;
+	border-radius : 5px;
+	width: 100%;
+	color : white;
+}
+.sharp {
+	border :1px;
+}
+</style>
+	<body>
+		<span id="header"></span>
+		<div class="container">
+			<h4 class='header'>Nawoo Tools<br/>- <span id="nowTool">ColorPicker</span> -<br/></h4>
+			<i class="fa fa-wrench"></i> Tools : 
+			<select class="selectpicker" id="toolChange" data-live-search="true">
+				<option value='ColorPicker' selected>ColorPicker</option>
+				<option value='Translation'>Translation</option>
+			</select>
+			<br/><br/>
+			</div>
+			<div id="main"> 
+				<h6 class='header'>Hex to RGB</h6>
+				<input type="text" id="rgb" placeholder="Hex to RGB" spellcheck="false" class="color copy" data-toggle="tooltip" data-placement="top" title="Copy" readonly>
+				<br/><br/>
+				<h6 class='header'>색 선택</h6>
+				<input type="text" id="copyColor" placeholder="Your color..." class="jscolor color copy" data-toggle="tooltip" data-placement="top" title="Copy" spellcheck="false" />
+				<br/><br/>
+				<div class="material-switch pull-right" style="margin-top:90px;">
+					prefix #&nbsp;&nbsp;
+					<input id="sharp" type="checkbox" class="toggleBtn"/>
+					<label for="sharp"></label>
+				</div><br/>
+				<h6 class='header'>click to copy to clipboard</h6>
+			</div>
+			<div id="toolArea"></div> 
+		</div>
+	</body>
+</html>
+
