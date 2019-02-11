@@ -61,7 +61,7 @@ function moduleLoad(name) {
 		$("#toolArea").empty();
 	} else {
 		$("#main").hide();
-		var path = "/module/"+name+".html #tools";
+		var path = "/module/"+getPage(name)+".html #tools";
 		
 		$("#toolArea").load(path,function(){
 			module.getModule(name);
@@ -69,10 +69,19 @@ function moduleLoad(name) {
 	}
 }
 
+function getPage(name) {
+	var obj = {
+			translation : 'translation',
+			'미세먼지' : 'mise'
+	}
+	return obj[name];
+}
+
 class Module{
 	getModule(name) {
 		var obj = {
-			translation : this.translation
+			translation : this.translation,
+			'미세먼지' : this.mise
 		}
 		obj[name]();
 	}
@@ -102,6 +111,62 @@ Module.prototype.translation = function() {
 
 }
 
+Module.prototype.mise = function() {
+	$("body").css({width: '800px', height : '600px'})
+	console.log('load : 미세먼지 API');
+	
+	var sido = "서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종";
+	sido = sido.split(", ").map(function(v){
+		var selected = (v == "인천") ? "selected" : ""; 
+		return "<option value=\""+v+"\" "+selected+">"+v+"</option>";
+	});
+	$("#sido").html(sido).selectpicker();
+	
+	$("#goDataUrl").click(function(){
+		window.open('https://www.data.go.kr/','_blank');
+	});
+	miseAPI("인천");
+	
+	$("#sido").change(function(){
+		miseAPI(this.value);
+	});
+}
+
+function miseAPI(sido) {
+	var param = { 	serviceKey : "T3BVHS8wlgBzTf3uq4bANdXJZwkzkYYikGLVOejRu8hDCgiJkru95Z%2FCN8qxDH%2BlhZkxgiUPZDvdiNDOZwJa1Q%3D%3D",
+					numOfRows : "30",
+					pageNo : "1",
+					sidoName : sido,
+					searchCondition	: "DAILY"
+				};
+	var xmlParam = "";
+	for (var key in param) {
+		xmlParam += key + "=" + param[key] + "&";
+	}
+	xmlParam = xmlParam.substr(0,xmlParam.length-1);
+	$.ajax({
+		
+		url : "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureSidoLIst?"+xmlParam,
+		type : "GET",
+		headers : {
+			'Content-Type' : 'text/xml;charset=utf-8'
+		},
+		dataType : "xml",
+		success : function(xml) {
+			var data = $.xml2json(xml);
+			data = data.body.items.item;
+			var u = [];
+			var uniqArr = {};
+			for (var i = 0; max = data.length, i < max; i++) {
+				if(u.indexOf(data[i].cityName) === -1) {
+					u.push(data[i].cityName);
+					uniqArr[i] = data[i];
+				}
+			}
+			console.log(uniqArr);
+		}
+	});
+}
 function selectControl(id,kr) {
 	var other = (id == "src_lang") ? $("#target_lang") : $("#src_lang");
 

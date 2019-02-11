@@ -14,7 +14,10 @@
  },
  "permissions": [ 
     "activeTab",
-    "*://*.kakao.com/*"
+    "*://*.kakao.com/*",
+    "*://*.openapi.airkorea.or.kr/*",
+    "*://*.data.go.kr/*"
+    
  ]
 
 }
