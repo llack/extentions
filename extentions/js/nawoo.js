@@ -125,7 +125,7 @@ Module.prototype.mise = function() {
 	$("#goDataUrl").click(function(){
 		window.open('https://www.data.go.kr/','_blank');
 	});
-	miseAPI("인천");
+	//miseAPI("인천");
 	
 	$("#sido").change(function(){
 		miseAPI(this.value);
