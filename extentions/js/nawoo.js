@@ -122,7 +122,7 @@ Module.prototype.mise = function() {
 	$("#sido").html(sido);
 	$(".selectpicker").selectpicker();
 	$("#goDataUrl").click(function(){
-		window.open('https://www.data.go.kr/','_blank');
+		window.open('https://www.data.go.kr/');
 	});
 	//miseAPI(mylastSido);
 	
