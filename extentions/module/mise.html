@@ -1,25 +1,43 @@
 <div id="tools">
 	<table style='width:100%'>
+		<colgroup>
+			<col width="50%">
+			<col width="50%">
+		</colgroup>
 		<tr>
 			<th>
-				시도 이름: <select class="selectpicker" id="sido">
+				시/도<select class="selectpicker" id="sido">
+				</select>
+			</th>
+			<th>
+				시/군/구<select class="selectpicker" id="sgg" disabled>
+					<option value="">데이터 로딩 중입니다.</option>
 				</select>
 			</th>
 		</tr>
 		<tr>
-			<td>
-				<div style="border: 2px solid #d9534f;height: 200px;">
+			<td colspan="2">
+				<div id='miseContents'>
 				</div>
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
-				<h6 class="header" id="goDataUrl" style='cursor:pointer;padding:0.3em'>- 공공데이터포털 대기오염정보 조회 서비스 -</h6>
+			<td colspan="2">
+				<div class='miseNotice' style='border-top:#32a1ff 5px solid;color:#32a1ff'>좋음 0<span>~ 30&nbsp;</span></div>
+				<div class='miseNotice' style='border-top:#00c73c 5px solid;color:#00c73c'>보통<span>~ 80&nbsp;</span></div>
+				<div class='miseNotice' style='border-top:#fd9b5a 5px solid;color:#fd9b5a'>나쁨<span>~ 150&nbsp;</span></div>
+				<div class='miseNotice' style='border-top:#ff5959 5px solid;color:#ff5959'>매우나쁨<span>151~&nbsp;</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="2">
 			<br/>
+				<h6 class="header" id="goDataUrl" style='cursor:pointer;padding:0.3em'>- 공공데이터포털 대기오염정보 조회 서비스 -</h6>
 			<br/>
 				<img src="/image/by.png" width="88" height="31">
 				<img src="/image/img_opentype01.jpg" width="88" height="31">
 			</td>
 		</tr>
 	</table>
+	<input type="hidden" id="miseData">
 </div>

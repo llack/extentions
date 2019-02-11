@@ -44,6 +44,7 @@ function getPrefix() {
 	var checked = (cpre == "true") ? true : false;
 	$("#sharp").prop("checked",checked);
 }
+
 function fn_copy(id) {
     var copyText = document.getElementById(id);
 	copyText.select();
@@ -52,8 +53,6 @@ function fn_copy(id) {
 
 function moduleLoad(name) {
 	var module = new Module();
-	
-
 	if(name == "colorpicker") {
 		console.log('load : colorpicker');
 		$("body").css({width: '300px', height : '450px'})
@@ -68,7 +67,6 @@ function moduleLoad(name) {
 		});
 	}
 }
-
 function getPage(name) {
 	var obj = {
 			translation : 'translation',
@@ -116,95 +114,20 @@ Module.prototype.mise = function() {
 	console.log('load : 미세먼지 API');
 	
 	var sido = "서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종";
+	var mylastSido = localStorage.getItem('sido') || "인천";
 	sido = sido.split(", ").map(function(v){
-		var selected = (v == "인천") ? "selected" : ""; 
+		var selected = (v == mylastSido) ? "selected" : ""; 
 		return "<option value=\""+v+"\" "+selected+">"+v+"</option>";
 	});
-	$("#sido").html(sido).selectpicker();
-	
+	$("#sido").html(sido);
+	$(".selectpicker").selectpicker();
 	$("#goDataUrl").click(function(){
 		window.open('https://www.data.go.kr/','_blank');
 	});
-	//miseAPI("인천");
+	//miseAPI(mylastSido);
 	
 	$("#sido").change(function(){
+		localStorage.setItem('sido',this.value);
 		miseAPI(this.value);
-	});
-}
-
-function miseAPI(sido) {
-	var param = { 	serviceKey : "T3BVHS8wlgBzTf3uq4bANdXJZwkzkYYikGLVOejRu8hDCgiJkru95Z%2FCN8qxDH%2BlhZkxgiUPZDvdiNDOZwJa1Q%3D%3D",
-					numOfRows : "30",
-					pageNo : "1",
-					sidoName : sido,
-					searchCondition	: "DAILY"
-				};
-	var xmlParam = "";
-	for (var key in param) {
-		xmlParam += key + "=" + param[key] + "&";
-	}
-	xmlParam = xmlParam.substr(0,xmlParam.length-1);
-	$.ajax({
-		
-		url : "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureSidoLIst?"+xmlParam,
-		type : "GET",
-		headers : {
-			'Content-Type' : 'text/xml;charset=utf-8'
-		},
-		dataType : "xml",
-		success : function(xml) {
-			var data = $.xml2json(xml);
-			data = data.body.items.item;
-			var u = [];
-			var uniqArr = {};
-			for (var i = 0; max = data.length, i < max; i++) {
-				if(u.indexOf(data[i].cityName) === -1) {
-					u.push(data[i].cityName);
-					uniqArr[i] = data[i];
-				}
-			}
-			console.log(uniqArr);
-		}
-	});
-}
-function selectControl(id,kr) {
-	var other = (id == "src_lang") ? $("#target_lang") : $("#src_lang");
-
-	if(kr != "kr") {
-		other.selectpicker('val','kr');
-	} else {
-		if(other.val() == "kr") {
-			other.selectpicker('val','en');
-		}
-	}
-}
-
-function kakaoTransAPI() {
-	var query = $("#beforeText").val().trim();
-	var src_lang = $("#src_lang").val();
-	var target_lang = $("#target_lang").val();
-	if(query == "") {
-		$("#afterText").val("");
-		return;
-	}
-	$.ajax({
-		url: 'https://kapi.kakao.com/v1/translation/translate',
-		type: 'POST',
-		data: { query : query, src_lang : src_lang, target_lang : target_lang},
-		headers: {
-			'Authorization' : 'KakaoAK 9867b83a94c2e1f05e77828792433dc7',
-			'Content-Type' : 'application/x-www-form-urlencoded'
-		},
-		contentType : 'application/json; charset=UTF-8',
-		dataType: 'json',
-		success: function (data) {
-			try	{
-				var text = data.translated_text[0];
-				text = (text == ".") ? "" : text;
-				$("#afterText").val(text);
-			} catch (e) {
-				$("#afterText").val("");
-			}
-		}
 	});
 }
