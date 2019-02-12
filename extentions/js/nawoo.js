@@ -124,10 +124,21 @@ Module.prototype.mise = function() {
 	$("#goDataUrl").click(function(){
 		window.open('https://www.data.go.kr/');
 	});
-	//miseAPI(mylastSido);
-	
+	miseAPI(mylastSido);
 	$("#sido").change(function(){
+		$("#miseContents").html("");
 		localStorage.setItem('sido',this.value);
 		miseAPI(this.value);
 	});
+	
+	$("#sgg").change(function(){
+		setSgg(this.value);
+	});
 }
+
+
+
+
+
+
+
