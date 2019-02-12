@@ -23,7 +23,7 @@ function kakaoTransAPI() {
 		type: 'POST',
 		data: { query : query, src_lang : src_lang, target_lang : target_lang},
 		headers: {
-			'Authorization' : 'KakaoAK 9867b83a94c2e1f05e77828792433dc7',
+			'Authorization' : 'KakaoAK '+keyIs('kakao'),
 			'Content-Type' : 'application/x-www-form-urlencoded'
 		},
 		contentType : 'application/json; charset=UTF-8',

@@ -1,6 +1,6 @@
 function miseAPI(sido) {
 	$("#sgg").html("<option value=''>데이터 로딩 중입니다.</option>").prop("disabled",true).selectpicker("refresh");
-	var param = { 	serviceKey : "T3BVHS8wlgBzTf3uq4bANdXJZwkzkYYikGLVOejRu8hDCgiJkru95Z%2FCN8qxDH%2BlhZkxgiUPZDvdiNDOZwJa1Q%3D%3D",
+	var param = { 	serviceKey : keyIs('mise'),
 					numOfRows : "30",
 					pageNo : "1",
 					sidoName : sido,
