@@ -71,7 +71,7 @@ function getPage(name) {
 	var obj = {
 			translation : 'translation',
 			'미세먼지' : 'mise',
-			weather : 'weather'
+			'날씨' : 'weather'
 	}
 	return obj[name];
 }
@@ -81,7 +81,7 @@ class Module{
 		var obj = {
 			translation : this.translation,
 			'미세먼지' : this.mise,
-			'weather' : this.weather
+			'날씨' : this.weather
 		}
 		obj[name]();
 	}
@@ -153,7 +153,6 @@ Module.prototype.weather = function() {
 	});
 	
 }
-
 
 
 

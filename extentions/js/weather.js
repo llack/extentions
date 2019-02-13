@@ -1,7 +1,9 @@
 function getXy(address) {
-	makeTables();
-	return;
 	$("#w_notice").hide().html("");
+	if (address.trim() == "") {
+		$("#w_notice").html("검색 결과가 없습니다.").show();
+		return;
+	}
 	$.ajax({
 		url: 'https://dapi.kakao.com/v2/local/search/address.json',
 		type: 'GET',
@@ -16,163 +18,63 @@ function getXy(address) {
 			if(data.length == 0) {
 				$("#w_notice").html("검색 결과가 없습니다.").show();
 			} else {
+				var arr = [];
+				$("#xyData").data("xy",data);
 				
-				
-				search_weather(data[0].y,data[0].x);
+				for(var i = 0; max=data.length, i < max; i++) {
+					var address = road_address = building = x = y = addressNo = "";
+					var rd = data[i].road_address;
+					var ad = data[i].address;
+					if(rd) {
+						building = (rd.building_name != "") ? ","+rd.building_name : "";
+						road_address = rd.address_name + building; 
+						addressNo = (ad) ? " "+ad.main_address_no : "";
+						addressNo += (ad.sub_adderss_no != "") ? "-"+ad.sub_adderss_no : "";
+						address = rd.region_1depth_name + " " + rd.region_2depth_name + " " + rd.region_3depth_name + addressNo + building;
+					} else {
+						address = ad.address_name;
+						road_address = '-';
+					}
+					var s = "<a id='"+data[i].y+"_"+data[i].x+"' class='search_weather' style='cursor:pointer'>";
+					var e = "</a>";
+					address = (address != "-") ? s+address+e : "-"; 
+					road_address = (road_address != "-") ? s+road_address+e : "-"; 
+					arr.push([address,road_address]);
+				}
+				makeTables(arr);
 			}
 		}
 	});
 }
-
+var table = null;
 function makeTables(data) {
-	var test = $("#datatables").DataTable({
-		data : [
-			{
-		        "name":       "Tiger Nixon",
-		        "position":   "System Architect",
-		        "salary":     "$3,120",
-		        "office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		    	"name":       "Tiger Nixon",
-		    	"position":   "System Architect",
-		    	"salary":     "$3,120",
-		    	"office":     "Edinburgh"
-		    },
-		    {
-		        "name":       "Garrett Winters",
-		        "position":   "Director",
-		        "salary":     "$5,300",
-		        "office":     "Edinburgh"
-		    }
-		]
+	if(table) {
+		table.destroy();
+		$("#datatables").empty();
+	}
+	table =	$("#datatables").DataTable({
+		data : data
 		,columns: [
-	        { data: 'name' },
-	        { data: 'position' },
-	        { data: 'salary' },
-	        { data: 'office' }
-	    ]
-		
+	        { title: "지번주소" },
+            { title: "도로명주소" },
+	    ],
+	    "scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging" : false,
+        "ordering" : false,
+        "language": { 
+        	"info": "",
+            "infoEmpty": "",
+            "infoFiltered" : "",
+            "zeroRecords" : "검색된 결과가 없습니다.",
+            "search" : "검색"
+        }
 	});
-	
-	console.log(test);
-	
 }
 function search_weather(lat,lon) {
-	//console.log(lat.lon);
+	console.log(lat,lon);
 }
-
+$(document).on('click','.search_weather',function(){
+	var xy = this.id.split("_");
+	search_weather(xy[0],xy[1]);
+});
