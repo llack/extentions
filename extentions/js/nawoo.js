@@ -70,7 +70,8 @@ function moduleLoad(name) {
 function getPage(name) {
 	var obj = {
 			translation : 'translation',
-			'미세먼지' : 'mise'
+			'미세먼지' : 'mise',
+			weather : 'weather'
 	}
 	return obj[name];
 }
@@ -79,7 +80,8 @@ class Module{
 	getModule(name) {
 		var obj = {
 			translation : this.translation,
-			'미세먼지' : this.mise
+			'미세먼지' : this.mise,
+			'weather' : this.weather
 		}
 		obj[name]();
 	}
@@ -136,6 +138,21 @@ Module.prototype.mise = function() {
 	});
 }
 
+Module.prototype.weather = function() {
+	$("body").css({width: '800px', height : '600px'})
+	console.log('load : Kakao Maps API & SKT Weather Planet API');
+
+	$("#address").focus();
+	
+	$("#address").keyup(function(e){
+		var keycode = e.keyCode || e.which;
+		
+		if(keycode == 13) {
+			getXy(this.value);
+		}
+	});
+	
+}
 
 
 

@@ -103,3 +103,7 @@ body {
   font-size: 0.45em;
   vertical-align: super;
 }
+
+#address {
+	width: 100%;
+}
