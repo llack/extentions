@@ -81,11 +81,66 @@ function search_weather(lat,lon) {
 		contentType : 'application/json; charset=UTF-8',
 		dataType: 'json',
 		success: function (result) {
-			console.log(result);
+			if(result) {
+				viewType('weather');
+				localStorage.setItem('wData',JSON.stringify(result));
+			}
 		}
 	});
+}
+
+function viewType(type) {
+	var weather = address = "";
+	if(type == "address") {
+		weather = 'none';
+		address = 'table';
+	} else {
+		weather = 'table';
+		address = 'none';
+	}
+	$("#weatherTable").css('display',weather);
+	$("#addressTable").css('display',address);
 }
 $(document).on('click','.search_weather',function(){
 	var xy = this.id.split("_");
 	search_weather(xy[0],xy[1]);
 });
+
+function setWeatherData() {
+	var data = JSON.parse(localStorage.getItem('wData'));
+	data = data.weather.forecast3days[0];
+	$("#timeRelease").html(data.timeRelease);
+	
+	if(data.fcst3hour.sky) {
+		var sky = data.fcst3hour.sky;
+		var temp = data.fcst3hour.temperature;
+		var humidity = data.fcst3hour.humidity;
+		
+		var skyArr = [];
+		for(var i=4; i <=67; i+=3 ) {
+			var param = {};
+			if(sky['name'+i+'hour'] != "") {
+				param.hour = i;
+				param.skyCode = sky['code'+i+'hour'];
+				param.skyName = sky['name'+i+'hour'];
+			}
+			if(temp['temp'+i+'hour'] != "") {
+				param.temp = temp['temp' + i + 'hour'];
+			}
+			
+			if(humidity['rh' + i + 'hour'] != "") {
+				param.humidity = humidity['rh' + i + 'hour'];
+			}
+			
+			if(Object.keys(param).length > 0) {
+				skyArr.push(param);
+			}
+		}
+		console.log(skyArr);
+	}
+}
+
+
+
+
+

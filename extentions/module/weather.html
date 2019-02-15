@@ -1,5 +1,5 @@
 <div id="tools">
-	<table style='width:100%'>
+	<table style='width:100%' id="addressTable">
 		<tr>
 			<td>
 				<h6 class="header">- 주 소 검 색 - </h6>
@@ -14,9 +14,49 @@
 		</tr>
 		<tr>
 			<td>
+				<img src="/image/weather/SKY_S01.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S02.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S03.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S04.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S05.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S06.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S07.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S08.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S09.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S10.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S11.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S12.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S13.png" width='40px' height='40px'></img>
+				<img src="/image/weather/SKY_S14.png" width='40px' height='40px'></img>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<table id="datatables" class="cell-border hover"></table>
+			</td>
+		</tr>
+	</table>
+	<table style="width:100%" id="weatherTable">
+		<tr>
+			<td>
+				<h6 class="header" style="cursor:pointer;padding:5px;" id='goAddress'>◀ &nbsp;&nbsp;뒤로가기</h6>
+			</td>		
+		</tr>
+		<tr>
+			<td>
+			기준 시간 : <span id='timeRelease'></span>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span id="weatherData">
+					
+				</span>
 			</td>
 		</tr>
 	</table>
 	<input type="hidden" id="xyData"/>
 </div>
+
+
+

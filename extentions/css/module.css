@@ -107,3 +107,13 @@ body {
 #address {
 	width: 100%;
 }
+#weatherTable {
+	display: none;	
+}
+.search_weather:hover {
+	color: #d9534f;
+	text-decoration : underline;
+}
+
+
+

@@ -143,7 +143,6 @@ Module.prototype.weather = function() {
 	console.log('load : Kakao Maps API & SKT Weather Planet API');
 
 	$("#address").focus();
-	
 	$("#address").keyup(function(e){
 		var keycode = e.keyCode || e.which;
 		
@@ -152,8 +151,11 @@ Module.prototype.weather = function() {
 		}
 	});
 	
+	$("#goAddress").click(function(){
+		viewType('address');
+	});
+	viewType('weather');
 }
-
 
 
 
