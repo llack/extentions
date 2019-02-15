@@ -29,7 +29,9 @@ function getXy(address) {
 						building = (rd.building_name != "") ? ","+rd.building_name : "";
 						road_address = rd.address_name + building; 
 						addressNo = (ad) ? " "+ad.main_address_no : "";
-						addressNo += (ad.sub_adderss_no != "") ? "-"+ad.sub_adderss_no : "";
+						if(ad) {
+							addressNo += (ad.sub_adderss_no != "") ? "-"+ad.sub_adderss_no : "";
+						}
 						address = rd.region_1depth_name + " " + rd.region_2depth_name + " " + rd.region_3depth_name + addressNo + building;
 					} else {
 						address = ad.address_name;
@@ -72,7 +74,16 @@ function makeTables(data) {
 	});
 }
 function search_weather(lat,lon) {
-	console.log(lat,lon);
+	$.ajax({
+		url: 'https://api2.sktelecom.com/weather/forecast/3days',
+		type: 'GET',
+		data: { lat : lat , lon : lon, appkey : keyIs('skt'), version : 1},
+		contentType : 'application/json; charset=UTF-8',
+		dataType: 'json',
+		success: function (result) {
+			console.log(result);
+		}
+	});
 }
 $(document).on('click','.search_weather',function(){
 	var xy = this.id.split("_");

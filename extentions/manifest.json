@@ -16,7 +16,9 @@
     "activeTab",
     "*://*.kakao.com/*",
     "*://*.openapi.airkorea.or.kr/*",
-    "*://*.data.go.kr/*"
+    "*://*.data.go.kr/*",
+    "*://*.sktelecom.*/*"
+    
  ]
 
 }
