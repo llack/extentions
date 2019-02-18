@@ -83,7 +83,7 @@ function search_weather(lat,lon) {
 		success: function (result) {
 			if(result) {
 				viewType('weather');
-				localStorage.setItem('wData',JSON.stringify(result));
+				setWeatherData(result);
 			}
 		}
 	});
@@ -106,8 +106,8 @@ $(document).on('click','.search_weather',function(){
 	search_weather(xy[0],xy[1]);
 });
 
-function setWeatherData() {
-	var data = JSON.parse(localStorage.getItem('wData'));
+function setWeatherData(result) {
+	var data = result;
 	data = data.weather.forecast3days[0];
 	$("#timeRelease").html(data.timeRelease);
 	
@@ -118,26 +118,46 @@ function setWeatherData() {
 		
 		var skyArr = [];
 		for(var i=4; i <=67; i+=3 ) {
-			var param = {};
 			if(sky['name'+i+'hour'] != "") {
+				var param = {};
 				param.hour = i;
 				param.skyCode = sky['code'+i+'hour'];
 				param.skyName = sky['name'+i+'hour'];
-			}
-			if(temp['temp'+i+'hour'] != "") {
 				param.temp = temp['temp' + i + 'hour'];
-			}
-			
-			if(humidity['rh' + i + 'hour'] != "") {
 				param.humidity = humidity['rh' + i + 'hour'];
-			}
-			
-			if(Object.keys(param).length > 0) {
 				skyArr.push(param);
 			}
 		}
-		console.log(skyArr);
+		if (skyArr.length > 0) {
+			var html = "<table width='100%' class='table'>";
+			html += "<tr align='center'>";
+			html += "<th>일자</th>";
+			html += "<th>날씨</th>";
+			html += "<th>기온(°)</th>";
+			html += "<th>습도(%)</th>";
+			html += "</tr>";
+			for(var j = 0; max=skyArr.length,j < max; j++ ) {
+				var s = skyArr[j];
+				html += "<tr align='center'>";
+				html += "<td width='25%'>"+dateView(data.timeRelease,s.hour)+"</td>";
+				html += "<td width='25%'><img src='/image/weather/"+s.skyCode+".png' width='40px' height='40px'></img></td>";
+				html += "<td width='25%'>"+s.temp+"</td>";
+				html += "<td width='25%'>"+s.humidity+"</td>";
+				html += "</tr>";				
+			}
+			html += "</table>";
+			$("#weatherData").html(html);
+		}
 	}
+}
+//<img src="/image/weather/SKY_S01.png" width='40px' height='40px'></img>
+function dateView(d1,time) {
+	var d1 = new Date(d1);
+	var d2 = new Date(Date.parse(d1) + (1000*time) * 3600);
+	var week = ['일','월','화','수','목','금','토'];
+	var dateArr = d2.toJSON().split("T");
+	var hour = (d2.getHours() < 10) ? "0"+d2.getHours() : d2.getHours();
+	return dateArr[0].substr(5) + " ("+week[d2.getDay()]+") "+hour+":00";
 }
 
 

@@ -154,7 +154,6 @@ Module.prototype.weather = function() {
 	$("#goAddress").click(function(){
 		viewType('address');
 	});
-	viewType('weather');
 }
 
 
