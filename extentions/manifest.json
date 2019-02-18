@@ -1,7 +1,7 @@
 {
 "name": "Nawoo Tools",
 "description" : "by nawoo",
-"version": "1.0.6",
+"version": "1.0.7",
 "manifest_version": 2,
 "icons": {
     "16": "image/icon16.png",
@@ -17,7 +17,7 @@
     "*://*.kakao.com/*",
     "*://*.openapi.airkorea.or.kr/*",
     "*://*.data.go.kr/*",
-    "*://api2.sktelecom.com/*"
+    "*://*.sktelecom.com/*"
   ]
 
 }
