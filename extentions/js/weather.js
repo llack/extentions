@@ -82,7 +82,6 @@ function search_weather(lat,lon) {
 		dataType: 'json',
 		success: function (result) {
 			if(result) {
-				viewType('weather');
 				setWeatherData(result);
 			}
 		}
@@ -107,6 +106,7 @@ $(document).on('click','.search_weather',function(){
 });
 
 function setWeatherData(result) {
+	$("#weatherData").html("");
 	var data = result;
 	data = data.weather.forecast3days[0];
 	$("#timeRelease").html(data.timeRelease);
@@ -147,17 +147,23 @@ function setWeatherData(result) {
 			}
 			html += "</table>";
 			$("#weatherData").html(html);
+			$("#weatherData").animate({ scrollTop : 0},'fast');
 		}
+		
+		viewType('weather');
 	}
 }
-//<img src="/image/weather/SKY_S01.png" width='40px' height='40px'></img>
 function dateView(d1,time) {
 	var d1 = new Date(d1);
 	var d2 = new Date(Date.parse(d1) + (1000*time) * 3600);
 	var week = ['일','월','화','수','목','금','토'];
-	var dateArr = d2.toJSON().split("T");
-	var hour = (d2.getHours() < 10) ? "0"+d2.getHours() : d2.getHours();
-	return dateArr[0].substr(5) + " ("+week[d2.getDay()]+") "+hour+":00";
+	return pz(d2.getMonth()+1)+'-' + pz(d2.getDate()) + " ("+week[d2.getDay()]+") "+pz(d2.getHours())+":00";
+}
+
+function pz(str) {
+	//prefix Zero
+	var result = str+"";
+	return result.padStart(2,'0');
 }
 
 
