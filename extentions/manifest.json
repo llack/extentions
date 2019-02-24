@@ -17,7 +17,8 @@
     "*://*.kakao.com/*",
     "*://*.openapi.airkorea.or.kr/*",
     "*://*.data.go.kr/*",
-    "*://*.sktelecom.com/*"
+    "*://*.sktelecom.com/*",
+    "*://*.naver.com/*"
   ]
 
 }

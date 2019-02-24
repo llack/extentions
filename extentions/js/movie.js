@@ -6,29 +6,50 @@ function loadMovieInfo() {
 			var td = "";
 			data = data.boxOfficeResult.dailyBoxOfficeList;
 			for(var i = 0; i < data.length; i++) {
+				var naverMinfo = naverPoster(data[i].movieNm);
 				td += "<tr align='center' class='mData'>";
-				td += "<td></td>";
 				td += "<td>"+data[i].rank+"</td>";
-				td += "<td>"+data[i].movieNm+"</td>";
+				td += "<td>"+naverMinfo.url+data[i].movieNm+"</td>";
 				td += "<td>"+data[i].openDt+"</td>";
 				td += "<td>"+number_format(data[i].audiAcc)+"</td>";
 				td += "<td>"+number_format(data[i].salesAcc)+"</td>";
-				td += "<td></td>";
+				td += "<td>"+naverMinfo.userRating+"</td>";
 				td += "</tr>";
 			}
 			if(data.length == 0) {
 				td = "<tr>";
-				td += "<td></td>";
-				td += "<td colspan='5' align='center'>NO DATA</td>";
-				td += "<td></td>";
+				td += "<td colspan='6' align='center'>NO DATA</td>";
 				td += "</tr>";
 			}
 			removeTable();
-			$("#movieTable > tbody:last").append(td);			
+			$("#movieTable > tbody:last").append(td);
 		}
 	});
 }
-
+var url = "";
+var userRating = "";
+function naverPoster(query) {
+	$.ajax({
+		url: 'https://openapi.naver.com/v1/search/movie.json?query='+query,
+		type: 'GET',
+		contentType : 'application/json; charset=UTF-8',
+		dataType: 'json',
+		async : false,
+		headers: {
+			'X-Naver-Client-Id' : keyIs('naver_mId'),
+			'X-Naver-Client-Secret' : keyIs('naver_mPw')
+		},
+		success: function (result) {
+			if(result.items[0].image) {
+				url = "<a href='"+result.items[0].link+"' target='_blank' title='네이버로 보기'>";
+				url += "<img src='"+result.items[0].image+"' width='89' height='114'/></a><br/>";
+				userRating = result.items[0].userRating;
+			}
+		}
+	});
+	
+	return { url : url , userRating : userRating};
+}
 function setDatepicker(ele){
 	var today = new Date(Date.parse(new Date())-(1000*24)*3600);
 	today = ""+today.getFullYear() + pz(today.getMonth()+1) + pz(today.getDate()); // yymmdd
@@ -53,25 +74,3 @@ function viewLoader() {
 function removeTable() {
 	$("#movieTable").find("tr:gt(1)").remove();
 }
-function initMdata() {
-	$(".mData").each(function(i,e) {
-		if($(e).find("td:first").html() != "") {
-			$(this).find("td:first,td:last").prop("colspan",1);	
-			var addTd = "<td></td>"+$(e).html()+"<td></td>";
-			$(e).html(addTd);
-		}	
-		$(this).css({'height':40,'font-size':'13px','border':'none'});
-	});
-}
-$(document).on('mouseover','.mData',function(){
-	initMdata();
-	if($(this).find("td:first").html() == "") {
-		$(this).find("td:first,td:last").remove();
-		$(this).find("td:first,td:last").prop("colspan",2);
-		$(this).css({'height':40,'font-size':'17px','border-bottom':'2px solid #d9534f','border-top':'1px solid #d9534f'});
-	}
-});
-
-$(document).on('mouseout','.mData',function(){
-	initMdata();
-});

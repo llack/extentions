@@ -60,6 +60,16 @@ body {
 	position : sticky;
 	top : 0px;	
 }
+#movieTable tr {
+	font-size : 14px;
+	border-bottom : 1px solid #d9534f;
+}
+#movieDate {
+	border : 1px solid #d9534f;
+}
+#movieTable .mData:hover {
+	background-color: #ffe5e5;
+}
 .donut-size {
   font-size: 10em;
   font-family: "Lato", Tahoma, Geneva, sans-serif;
