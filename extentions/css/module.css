@@ -46,6 +46,20 @@ body {
 	overflow-y:auto;
 	padding: 1em;
 }
+#movieData {
+	border: 2px solid #d9534f;
+	height: 300px;
+	width:100%;
+	overflow-y:auto;
+	padding: 0.5em;
+}
+#movieData tr {
+	height : 40px;
+}
+#movieTable {
+	position : sticky;
+	top : 0px;	
+}
 .donut-size {
   font-size: 10em;
   font-family: "Lato", Tahoma, Geneva, sans-serif;

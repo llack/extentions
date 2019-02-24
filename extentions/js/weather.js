@@ -160,13 +160,6 @@ function dateView(d1,time) {
 	return pz(d2.getMonth()+1)+'-' + pz(d2.getDate()) + " ("+week[d2.getDay()]+") "+pz(d2.getHours())+":00";
 }
 
-function pz(str) {
-	//prefix Zero
-	var result = str+"";
-	return result.padStart(2,'0');
-}
-
-
 
 
 

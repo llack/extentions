@@ -51,6 +51,14 @@ function fn_copy(id) {
 	document.execCommand("Copy");
 }
 
+function pz(str) {
+	//prefix Zero
+	var result = str+"";
+	return result.padStart(2,'0');
+}
+function number_format(num) {
+	return new Number(num*1).toLocaleString('en-US');
+}
 function moduleLoad(name) {
 	var module = new Module();
 	if(name == "colorpicker") {
@@ -69,9 +77,10 @@ function moduleLoad(name) {
 }
 function getPage(name) {
 	var obj = {
-			translation : 'translation',
+			'번역' : 'translation',
 			'미세먼지' : 'mise',
-			'날씨' : 'weather'
+			'날씨' : 'weather',
+			'박스오피스' : 'movie'
 	}
 	return obj[name];
 }
@@ -79,9 +88,10 @@ function getPage(name) {
 class Module{
 	getModule(name) {
 		var obj = {
-			translation : this.translation,
+			'번역' : this.translation,
 			'미세먼지' : this.mise,
-			'날씨' : this.weather
+			'날씨' : this.weather,
+			'박스오피스' : this.movie
 		}
 		obj[name]();
 	}
@@ -156,6 +166,17 @@ Module.prototype.weather = function() {
 	});
 }
 
+Module.prototype.movie = function() {
+	$("body").css({width: '800px', height : '600px'})
+	console.log('load : 박스오피스 API');
+	
+	setDatepicker("#movieDate");
+	
+	$("#movieDate").change(function(){
+		loadMovieInfo();
+	});
+	loadMovieInfo();
+}
 
 
 
