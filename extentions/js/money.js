@@ -1,12 +1,10 @@
 function loadMoney() {
 	moneyLoader();
 	var param = { authkey : keyIs('money'), searchdate : $("#moneyDate").val() , data : 'AP01'};
-	var data = $.parseJSON(localStorage.getItem('money'));
-	data.reverse();
 	$.get('https://www.koreaexim.go.kr/site/program/financial/exchangeJSON',param,function(result){
-		var data = result.reverse();
 		var html = "";
-		if(data.length > 0) {
+		if(result) {
+			var data = result.reverse();
 			for(var i = 0; max=data.length, i < max; i++) {
 				html += moneyTr(data[i]);
 			}
