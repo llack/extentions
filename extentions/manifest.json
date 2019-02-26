@@ -18,7 +18,9 @@
     "*://*.openapi.airkorea.or.kr/*",
     "*://*.data.go.kr/*",
     "*://*.sktelecom.com/*",
-    "*://*.naver.com/*"
+    "*://*.naver.com/*",
+    "*://*.koreaexim.go.kr/*"
+    
   ]
 
 }
