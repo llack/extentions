@@ -53,6 +53,13 @@ body {
 	overflow-y:auto;
 	padding: 0.5em;
 }
+#moneyData {
+	border: 2px solid #d9534f;
+	height: 330px;
+	width:100%;
+	overflow-y:auto;
+	padding: 0.5em;
+}
 #movieData tr {
 	height : 40px;
 }
@@ -64,7 +71,7 @@ body {
 	font-size : 14px;
 	border-bottom : 1px solid #d9534f;
 }
-#movieDate {
+#movieDate,#moneyDate {
 	border : 1px solid #d9534f;
 }
 #movieTable .mData:hover {
@@ -145,6 +152,7 @@ body {
 	color: #d9534f;
 	text-decoration : underline;
 }
-
-
-
+.tr_money:hover {
+	background-color: #ffe5e5;
+	border-bottom : 1px solid #d9534f
+}

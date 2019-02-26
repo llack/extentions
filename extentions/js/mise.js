@@ -40,7 +40,6 @@ function miseAPI(sido) {
 	});
 }
 function setSgg(sgg) {
-	localStorage.setItem('sgg',sgg);
 	var data = $("#miseData").data("mise");
 	var html = "";
 	if(sgg == "all") {

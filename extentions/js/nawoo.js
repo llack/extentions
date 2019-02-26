@@ -80,7 +80,8 @@ function getPage(name) {
 			'번역' : 'translation',
 			'미세먼지' : 'mise',
 			'날씨' : 'weather',
-			'박스오피스' : 'movie'
+			'박스오피스' : 'movie',
+			'환율' : 'money'
 	}
 	return obj[name];
 }
@@ -91,7 +92,8 @@ class Module{
 			'번역' : this.translation,
 			'미세먼지' : this.mise,
 			'날씨' : this.weather,
-			'박스오피스' : this.movie
+			'박스오피스' : this.movie,
+			'환율' : this.money
 		}
 		obj[name]();
 	}
@@ -178,5 +180,13 @@ Module.prototype.movie = function() {
 	loadMovieInfo();
 }
 
-
+Module.prototype.money = function() {
+	$("body").css({width: '800px', height : '600px'})
+	mDatePicker("#moneyDate");
+	
+	$("#moneyDate").change(function(){
+		loadMoney();
+	});
+	loadMoney();
+}
 
