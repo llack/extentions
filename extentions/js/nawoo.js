@@ -103,6 +103,12 @@ Module.prototype.translation = function() {
 	$("body").css({width: '800px', height : '500px'})
 	console.log('load : translation');
 	
+	$(".toggle_button").click(function(){
+		var otherForm = this.id == "transForm" ? "talkForm" : "transForm";
+		$("." + this.id).hide();
+		$("." + otherForm).show();
+		
+	})
 	$(".selectpicker").selectpicker();
 
 	$("#beforeText").keyup(function(){

@@ -2,8 +2,9 @@
 	<table style='width:100%'>
 		<tr>
 			<td colspan="3">제공: <img src='/image/kakao.jpg' width='150' style='padding-bottom:8px'/></td>
+			<td colspan="3" align="right"><input type='button' value='번역톡' class="toggle_button transForm" id='transForm'/></td>
 		</tr>
-		<tr>
+		<tr class='transForm'>
 			<th width="10%"></th>
 			<th width="30%" align="center">
 				<select class="selectpicker" id="src_lang">
@@ -29,7 +30,7 @@
 			</th>
 			<th width="10%"></th>
 		</tr>
-		<tr>
+		<tr class='transForm'>
 			<td colspan="3" style="padding:1em">
 				<textarea style="width:100%;resize:none;border: 2px solid #d9534f" rows="7" spellcheck="false" id="beforeText" maxlength="1000" placeholder='내용을 입력해주세요 (0/1000자)'></textarea>
 			</td>
@@ -37,7 +38,15 @@
 				<textarea style="width:100%;resize:none;border: 2px solid #d9534f" rows="7" spellcheck="false" id="afterText"></textarea>
 			</td>
 		</tr>
+		<tr class='talkForm'>
+			<td align='center'><input type='button' value='돌아가기' class="toggle_button talkForm" id='talkForm'/></td>
+		</tr>
+		<tr class='talkForm'>
+			<td align="center">
+			<iframe src='https://translate.kakao.com/m' width="90%" height="500"></iframe>
+			</td>
+		</tr>
 	</table>
-	<h6 class="header">한국어를 제외한 타언어간의 번역은 제공되지 않습니다 (요청 글자수 일 50,000자)<br/>즉, 한국어에서 타언어로의 번역, 혹은 타언어에서 한국어로의 번역만 지원합니다.</h6>
+	<h6 class="header transForm">한국어를 제외한 타언어간의 번역은 제공되지 않습니다 (요청 글자수 일 50,000자)<br/>즉, 한국어에서 타언어로의 번역, 혹은 타언어에서 한국어로의 번역만 지원합니다.</h6>
 </div>
 

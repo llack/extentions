@@ -12,6 +12,9 @@
 "browser_action": {
     "default_popup": "index.html"
  },
+"background": {
+      "scripts": [ "/js/background.js" ]
+},
  "permissions": [ 
     "activeTab",
     "*://*.kakao.com/*",
@@ -20,8 +23,6 @@
     "*://*.sktelecom.com/*",
     "*://*.naver.com/*",
     "*://*.koreaexim.go.kr/*"
-    
   ]
-
 }
 
