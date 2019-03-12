@@ -72,5 +72,5 @@ function viewLoader() {
 }
 
 function removeTable() {
-	$("#movieTable").find("tr:gt(1)").remove();
+	$("#movieTable").find("tr:gt(0)").remove();
 }

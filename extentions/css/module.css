@@ -48,24 +48,19 @@ body {
 }
 #movieData {
 	border: 2px solid #d9534f;
-	height: 300px;
+	height: 360px;
 	width:100%;
 	overflow-y:auto;
-	padding: 0.5em;
 }
 #moneyData {
 	border: 2px solid #d9534f;
-	height: 330px;
+	height: 300px;
 	width:100%;
 	overflow-y:auto;
 	padding: 0.5em;
 }
 #movieData tr {
 	height : 40px;
-}
-#movieTable {
-	position : sticky;
-	top : 0px;	
 }
 #movieTable tr {
 	font-size : 14px;
@@ -171,4 +166,8 @@ body {
 	color : #d9534f;
 	border : 1px solid #d9534f;
 	background-color : white;
+}
+.headerFlex {
+	position:sticky;
+	top:0px;
 }

@@ -1,7 +1,7 @@
 <div id="tools">
 	<table style='width:100%'>
 		<tr>
-			<td align='left'>제공: <img src='/image/movielogo.png' width='170' style='padding-bottom:8px'/> <img src='/image/naver.png' width='170' style='padding-bottom:8px'/></td>
+			<td align='left'>제공: <img src='/image/naver.png' width='170' style='padding-bottom:8px'/> <img src='/image/movielogo.png' width='170' style='padding-bottom:8px'/> </td>
 			<td align='right'>
 				일자 선택 : 
 				<input type="text" id="movieDate" maxlength='8' autocomplete='off'>
@@ -9,7 +9,7 @@
 		</tr>
 	</table>
 	<div id="movieData">
-	<table style='width:100%' id='movieTable'>
+	<table class="headerFlex" style='width:100%;background:white'>
 		<colgroup>
 			<col width="5%">
 			<col width="30%">
@@ -18,10 +18,10 @@
 			<col width="20%">
 			<col width="10%">
 		</colgroup>
-		<tr align='center'>
+		<tr align='center' style='border-bottom:1px solid #d9534f'>
 			<th colspan="6">일 일 박 스 오  피 스 TOP 10</th>
 		</tr>
-		<tr align='center' style='border-bottom:2px solid #d9534f'>
+		<tr align='center' style='border-bottom:1px solid #d9534f'>
 			<th>순위</th>
 			<th>영화명</th>
 			<th>개봉일</th>
@@ -30,8 +30,19 @@
 			<th>평점</th>
 		</tr>
 	</table>
+	<table style='width:100%;' id='movieTable'>
+		<colgroup>
+			<col width="5%">
+			<col width="30%">
+			<col width="15%">
+			<col width="20%">
+			<col width="20%">
+			<col width="10%">
+		</colgroup>
+		<tr align='center' style='display:none'>
+		<td></td>
+		</tr>
+	</table>
 	</div>
-	<br/>
-	<h6 class="header">전국영화관 발권데이터를 실시간 집계처리하여 박스오피스 정보제공<br/>영화 포스터 및  네티즌 평점  제공 : NAVER</h6>
 </div>
 

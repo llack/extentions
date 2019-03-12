@@ -8,8 +8,9 @@ function loadMoney() {
 			for(var i = 0; max=data.length, i < max; i++) {
 				html += moneyTr(data[i]);
 			}
-		} else {
-			html += "<tr><td colspan='3' align='center'>NO DATA</td></tr>";
+			if(data.length == 0) {
+				html += "<tr><td colspan='3' align='center'>NO DATA</td></tr>";
+			}
 		}
 		removeMtable();
 		$("#moneyTable > tbody:last").append(html);
