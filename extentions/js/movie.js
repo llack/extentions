@@ -40,10 +40,14 @@ function naverPoster(query) {
 			'X-Naver-Client-Secret' : keyIs('naver_mPw')
 		},
 		success: function (result) {
-			if(result.items[0].image) {
-				url = "<a href='"+result.items[0].link+"' target='_blank' title='네이버로 보기'>";
-				url += "<img src='"+result.items[0].image+"' width='89' height='114'/></a><br/>";
-				userRating = result.items[0].userRating;
+			var data = result.items;
+			for(var i = 0; max = data.length, i <max; i++) {
+				if(data[i].title == "<b>" + query + "</b>") {
+					url = "<a href='"+data[i].link+"' target='_blank' title='네이버로 보기'>";
+					url += "<img src='"+data[i].image+"' width='89' height='114'/></a><br/>";
+					userRating = data[i].userRating;
+					break;
+				}
 			}
 		}
 	});
