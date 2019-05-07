@@ -1,7 +1,7 @@
 {
 "name": "NawooTools",
 "description" : "by nawoo",
-"version": "1.0.11",
+"version": "1.0.12",
 "manifest_version": 2,
 "icons": {
     "16": "image/icon16.png",
