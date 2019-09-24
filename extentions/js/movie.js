@@ -42,7 +42,7 @@ function naverPoster(query) {
 		success: function (result) {
 			var data = result.items;
 			for(var i = 0; max = data.length, i <max; i++) {
-				if(removeBlank(data[i].title) == removeBlank("<b>" + query + "</b>")) {
+				if(removeBlank(data[i].title) == removeBlank(query)) {
 					url = "<a href='"+data[i].link+"' target='_blank' title='네이버로 보기'>";
 					url += "<img src='"+data[i].image+"' width='89' height='114'/></a><br/>";
 					userRating = data[i].userRating;
@@ -55,7 +55,7 @@ function naverPoster(query) {
 	return { url : url , userRating : userRating};
 }
 function removeBlank(str) {
-	return (typeof str != "string") ? "" : str.replace(/\s/gi, "");
+	return (typeof str != "string") ? "" : str.replace(/\s|(<([^>]+)>)/gi, "");
 }
 function setDatepicker(ele){
 	var today = new Date(Date.parse(new Date())-(1000*24)*3600);
