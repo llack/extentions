@@ -16,7 +16,6 @@
       "scripts": [ "/js/background.js" ]
 },
  "permissions": [ 
-    "activeTab",
     "*://*.kakao.com/*",
     "*://*.openapi.airkorea.or.kr/*",
     "*://*.data.go.kr/*",
